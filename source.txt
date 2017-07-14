@@ -1,0 +1,13 @@
+15.06.2017
+Patrick Mörtenböck
+Gartenstraße 12
+4284 Tragwein
+TR231
+#Kommission 1 ö
+1,lfm,Store nähen,10,50
+#Kommission 2
+5,lfm,FB,1,5
+6,lfm,ziehen,2,10
+#Kommission 3
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Rechnung</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header class="clearfix">
+        <h1>RECHNUNG</h1>
+        <!-- <div class="receiver">
+            {{ receiver }} <br/>
+            {{ address }} <br/>
+            {{ city }}
+        </div> -->
+
+        <div id="company">
+            <table>
+                <tr>
+                    <td>RECHNUNGSNUMMER: </td>
+                    <td>{{ bill_no }}</td>
+                </tr>
+                <tr>
+                    <td>RECHNUNGSDATUM: </td>
+                    <td>{{ date }}</td>
+                </tr>
+            </table>
+        </div>
+         <div id="project">
+             <div>
+                 <span></span>
+                 {{ receiver }}
+             </div>
+             <div>
+                 <span></span>
+                 {{ address }}
+             </div>
+             <div>
+                 <span></span>
+                 {{ city }}
+             </div>
+         </div>
+    </header>
+   <!-- <div class="loc_date">
+        <span>Rechnungsdatum:</span>
+        {{ location }}, {{ date }}
+    </div>
+    <div class="'bill_no">
+        <span>Rechnungsnummer:</span>
+        {{ bill_no }}
+    </div> -->
+    <table>
+        <THEAD>
+            <TR>
+                <TH class="qty">Menge</TH>
+                <TH class="unit">Einheit</TH>
+                <TH class="desc">Leistung</TH>
+                <TH class="unit">a</TH>
+                <TH class="total">Preis</TH>
+            </TR>
+        </THEAD>
+        <TBODY>
+    {% for commissions in items %}
+            <TR>
+                <TD colspan="5" class="service">{{ commissions.name }}</TD>
+            </TR>
+        {% for item in commissions['items'] %}
+            <TR>
+                <TD class="qty">{{item.amount}}</TD>
+                <TD class="unit">{{item.unit}}</TD>
+                <TD class="desc">{{item.text}}</TD>
+                <TD class="ppunit">{{ '%0.2f' % item.price_per_unit|float }}</TD>
+                <TD class="total">{{ '%0.2f' % item.price|float }}</TD>
+            </TR>
+        {% endfor %}
+    {% endfor %}
+        <TR>
+            <TD colspan="4" class="netto total_text">Netto:</TD>
+            <TD class="netto total">{{ '%0.2f' % netto|float }}</TD>
+        </TR>
+        <TR>
+            <TD colspan="4" class="mwst total_text">MwSt:</TD>
+            <TD class="mwst total">{{ '%0.2f' % mwst|float }}</TD>
+        </TR>
+        <TR>
+            <TD colspan="4" class="grand total total_text">Brutto:</TD>
+            <TD class="grand total">{{ '%0.2f' % brutto|float }}</TD>
+        </TR>
+        </TBODY>
+    </table>
+
+
+
+
+</body>
+</html>
