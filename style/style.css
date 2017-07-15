@@ -23,6 +23,7 @@ body {
 
 header {
   padding: 10px 0;
+  padding-top: 4cm;
   margin-bottom: 30px;
 }
 
@@ -49,6 +50,7 @@ h1 {
 
 #project {
   float: left;
+  padding-left: 5px;
 }
 
 #project span {
@@ -62,8 +64,23 @@ h1 {
 
 #company {
   float: right;
+  width: 25%;
   text-align: right;
+  padding-right: 5px;
 }
+
+#company table {
+	
+	float: right;
+	text-align: left;
+	padding-right: 5px;
+}
+
+#company td {
+	text-align: left;
+	border: none;
+}
+
 
 #project div,
 #company div {
@@ -94,6 +111,11 @@ table th {
   font-weight: normal;
 }
 
+table th.unit {
+	text-align: center;
+	padding-right: 2px;
+}
+
 table th.ppunit,
 table th.total {
   text-align: end;
@@ -108,7 +130,7 @@ table .desc {
 table td {
   padding: 2px;
   text-align: center;
-  width: 10%;
+  width: 5%;
   border-bottom: 1px solid #C1CED9;
 }
 

@@ -7,54 +7,47 @@
 <body>
     <header class="clearfix">
         <h1>RECHNUNG</h1>
-        <!-- <div class="receiver">
-            {{ receiver }} <br/>
-            {{ address }} <br/>
-            {{ city }}
-        </div> -->
 
         <div id="company">
             <table>
-                <tr>
-                    <td>RECHNUNGSNUMMER: </td>
-                    <td>{{ bill_no }}</td>
-                </tr>
-                <tr>
-                    <td>RECHNUNGSDATUM: </td>
-                    <td>{{ date }}</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>Rechnungsnummer:</td>
+                        <td>{{ bill_no }}</td>
+                    </tr>
+                    <tr>
+                        <td>Rechnungsdatum:</td>
+                        <td>{{ date }}</td>
+                    </tr>
+                </tbody>
             </table>
+            <!--<div>-->
+                <!--Rechnungsnummer: {{ bill_no }}-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--Rechnungsdatum: {{ date }}-->
+            <!--</div>-->
         </div>
          <div id="project">
              <div>
-                 <span></span>
                  {{ receiver }}
              </div>
              <div>
-                 <span></span>
                  {{ address }}
              </div>
              <div>
-                 <span></span>
                  {{ city }}
              </div>
          </div>
     </header>
-   <!-- <div class="loc_date">
-        <span>Rechnungsdatum:</span>
-        {{ location }}, {{ date }}
-    </div>
-    <div class="'bill_no">
-        <span>Rechnungsnummer:</span>
-        {{ bill_no }}
-    </div> -->
+
     <table>
         <THEAD>
             <TR>
                 <TH class="qty">Menge</TH>
                 <TH class="unit">Einheit</TH>
                 <TH class="desc">Leistung</TH>
-                <TH class="unit">a</TH>
+                <TH class="ppunit">á</TH>
                 <TH class="total">Preis</TH>
             </TR>
         </THEAD>

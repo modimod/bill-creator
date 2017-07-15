@@ -124,3 +124,19 @@ with open("bill.html", "w") as f:
 	f.write(result)
 
 print(read_source('source.txt'))
+
+import pdfkit
+options = {
+    'page-size': 'A4',
+    # 'margin-top': '0.75in',
+    # 'margin-right': '0.75in',
+    # 'margin-bottom': '0.75in',
+    # 'margin-left': '0.75in',
+    'encoding': "UTF-8",
+    # 'custom-header' : [
+    #     ('Accept-Encoding', 'gzip')
+    # ],
+    # 'no-outline': None,
+	'dpi': 400
+}
+pdfkit.from_url('file:///Users/Moerti/AA_projects/bill-creator/bill.html', 'out.pdf', options=options)

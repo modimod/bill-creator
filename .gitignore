@@ -1,14 +1,11 @@
 
 style/.Rhistory
-
-example1/index.html
-
-example1/logo.png
-
-example1/style.css
-
-example1/dimension.png
+example1/
+example1/*
+.idea/
+.idea/*
 
 panda.jpeg
 
 IMG_20170706_171530817.jpg
+
