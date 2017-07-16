@@ -18,4 +18,13 @@ TR231
 9,lfm,ziehen,2,10
 7,lfm,Store nähen,10,50
 9,lfm,ziehen,2,10
-0
+#Kommission 4
+7,lfm,Karniesen,10,50
+9,lfm,Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig,2,10
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+15.3

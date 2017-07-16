@@ -9,16 +9,19 @@ a {
   text-decoration: underline;
 }
 
-body {
-  position: relative;
-  width: 21cm;  
-  height: 29.7cm; 
-  margin: 0 auto; 
+body { 
   color: #001028;
   background: #FFFFFF; 
   font-family: Arial, sans-serif; 
   font-size: 12px; 
   font-family: Arial;
+}
+
+.page {
+  position: relative;
+  width: 21cm;  
+  height: 29.7cm; 
+  margin: 0 auto; 
 }
 
 header {
@@ -158,7 +161,8 @@ table td.qty {
 }
 
 table td.ppunit,
-table td.total {
+table td.total,
+table td.carry-top {
   text-align: end;
   font-size: 1.2em;
   width: 7%;
@@ -189,6 +193,19 @@ table td.zs {
   border-top: 1px solid #5D6975;
   border-bottom: none;
 }
+
+table td.carry-top-text,
+table td.carry-bottom-text  {
+  padding-right: 30px;
+  font-size: 1.3em;
+  text-align: right;
+}
+
+table td.carry-bottom,
+table td.carry-bottom-text {
+  border-top: 2px solid #5D6975;
+}
+
 
 #notices .notice {
   color: #5D6975;
