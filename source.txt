@@ -1,35 +1,21 @@
 15.06.2017
-Patrick Mörtenböck
+Patrick Mörtenböck<br>Hallo
 Gartenstraße 12
 4284 Tragwein
+4645
 TR231
-#Kommission 1 ö
+#Kommission Berger
 1,lfm,Store nähen,10,50
-#Kommission 2
-5,lfm,FB,1,5
-6,lfm,ziehen,2,10
+#Kommission Bauer
+5,st,Hose verkürzt,1,5
+6.73,lfm,ziehen,2,10
 #Kommission 3
+7,lfm,Karniesen,10,50
+9,lfm,Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig,2,10
 7,lfm,Store nähen,10,50
 9,lfm,ziehen,2,10
 7,lfm,Store nähen,10,50
 9,lfm,ziehen,2,10
 7,lfm,Store nähen,10,50
 9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
+0

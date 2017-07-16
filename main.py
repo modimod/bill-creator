@@ -13,8 +13,9 @@ INDICES = {
 	'receiver': 1,
 	'address': 2,
 	'city': 3,
-	'bill_no': 4,
-	'start_items': 5
+	'cost_id': 4,
+	'bill_no': 5,
+	'start_items': 6
 }
 
 heads = list(['amount','unit','text','price_per_unit','price'])
@@ -36,6 +37,7 @@ def read_source(src):
 	context['receiver'] = data[INDICES['receiver']]
 	context['address'] = data[INDICES['address']]
 	context['city'] = data[INDICES['city']]
+	context['cost_id'] = data[INDICES['cost_id']]
 	context['bill_no'] = data[INDICES['bill_no']]
 
 
@@ -45,12 +47,14 @@ def read_source(src):
 
 	for i,d in enumerate(data[start:]):
 		if d.startswith('#'): ids.append(i+start)
-	print('ids:',ids)
-	print('len data',len(data))
+
+	discount = data[len(data)-1]
+
+	data_len = len(data)-1
 
 	items_outer_list = list()
 	for i,id in enumerate(ids):
-		next_id = ids[i+1] if (i+1)<len(ids) else len(data)
+		next_id = ids[i+1] if (i+1)<len(ids) else data_len
 		item = {}
 		item['name'] = data[id][1:].rstrip()
 		item['items'] = [{h: v.rstrip() for (h,v) in zip(heads,d.split(','))} for d in data[ids[i]+1:next_id]]
@@ -59,8 +63,10 @@ def read_source(src):
 
 	context['items'] = items_outer_list
 
+	if discount != '0':
+		context['discount'] = discount
 
-	return context
+	return context,len(data)
 
 
 
@@ -76,9 +82,17 @@ def get_total_price(context):
 		for i in item['items']:
 			netto += float(i['price'])
 
-	mwst = netto*0.2
-	brutto = netto+mwst
-	return netto,mwst,brutto
+	zs = netto
+	if 'discount' in context:
+		zs = netto + float(context['discount'])
+
+	mwst = zs*0.2
+	brutto = zs+mwst
+
+	if 'discount' in context:
+		return ('netto',netto),('zs',zs),('mwst',mwst),('brutto',brutto)
+
+	return ('netto',netto),('mwst',mwst),('brutto',brutto)
 
 context = {
 	'items':
@@ -109,15 +123,22 @@ context = {
 	'receiver': 'Patrick Moertenboeck',
 	'address': 'Gartenstrasse 12',
 	'city': 'Tragwein',
-	'bill_no': 'TR231'
+	'bill_no': 'TR231',
+	'discount': -10.15
 }
 
-context['netto'],context['mwst'],context['brutto'] = get_total_price(context)
+# price_info = get_total_price(context)
+#
+# for k,v in price_info:
+# 	context[k] = v
+#
+# result = render('template.html', context)
 
-#result = render('template.html', context)
+scontext,lines = read_source('source.txt')
+price_info = get_total_price(scontext)
+for k,v in price_info:
+	scontext[k] = v
 
-scontext = read_source('source.txt')
-scontext['netto'],scontext['mwst'],scontext['brutto'] = get_total_price(scontext)
 result = render('template.html', scontext)
 
 with open("bill.html", "w") as f:
@@ -137,6 +158,7 @@ options = {
     #     ('Accept-Encoding', 'gzip')
     # ],
     # 'no-outline': None,
-	'dpi': 400
+	'dpi': 400,
+	'header-right':'[page]/[toPage]'
 }
 pdfkit.from_url('file:///Users/Moerti/AA_projects/bill-creator/bill.html', 'out.pdf', options=options)

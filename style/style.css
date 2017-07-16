@@ -25,6 +25,7 @@ header {
   padding: 10px 0;
   padding-top: 4cm;
   margin-bottom: 30px;
+  font-size: 1.5em;
 }
 
 #logo {
@@ -37,15 +38,13 @@ header {
 }
 
 h1 {
-  border-top: 1px solid  #5D6975;
   border-bottom: 1px solid  #5D6975;
   color: #5D6975;
   font-size: 2.4em;
   line-height: 1.4em;
   font-weight: normal;
-  text-align: center;
+  text-align: left;
   margin: 0 0 20px 0;
-  background: url(dimension.png);
 }
 
 #project {
@@ -59,12 +58,12 @@ h1 {
   width: 52px;
   margin-right: 10px;
   display: inline-block;
-  font-size: 0.8em;
+  font-size: 1.2em;
 }
 
 #company {
   float: right;
-  width: 25%;
+  width: 30%;
   text-align: right;
   padding-right: 5px;
 }
@@ -114,6 +113,7 @@ table th {
 table th.unit {
 	text-align: center;
 	padding-right: 2px;
+  width: 5%;
 }
 
 table th.ppunit,
@@ -130,14 +130,18 @@ table .desc {
 table td {
   padding: 2px;
   text-align: center;
-  width: 5%;
+  width: 10%;
   border-bottom: 1px solid #C1CED9;
+}
+
+table td.unit {
+  width: 5%;
 }
 
 table td.service,
 table td.desc {
   vertical-align: top;
-  width: 10px;
+  width: 50%;
 }
 
 table td.service {
@@ -149,6 +153,7 @@ table td.service {
 }
 
 table td.qty {
+  width: 3%;
   font-size: 1.2em;
 }
 
@@ -156,10 +161,11 @@ table td.ppunit,
 table td.total {
   text-align: end;
   font-size: 1.2em;
+  width: 7%;
 }
 
 table td.grand {
-  border-top: 1px solid #5D6975;
+  border-top: 2px solid #5D6975;
   border-bottom: none;
 }
 
@@ -176,6 +182,11 @@ table td.netto {
 }
 
 table td.mwst {
+  border-bottom: none;
+}
+
+table td.zs {
+  border-top: 1px solid #5D6975;
   border-bottom: none;
 }
 
