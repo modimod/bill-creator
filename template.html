@@ -5,117 +5,137 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <div id="seller-adresse">
-        <div>
-            Textil-Dekor Sacher OGH
-        </div>
-        <div>
+    {% for p in pages %}
+        <div class="page">
+            <div id="seller-adresse">
+                <div>
+                    Textil-Dekor Sacher OGH
+                </div>
+                <div>
 
-        </div>
-    </div>
+                </div>
+            </div>
 
-    <header class="clearfix">
+            <header class="clearfix">
 
-        <div id="company">
+                <div id="company">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Rechnungsnummer:</td>
+                                <td>{{ bill_no }}</td>
+                            </tr>
+                            <tr>
+                                <td>Rechnungsdatum:</td>
+                                <td>{{ date }}</td>
+                            </tr>
+                            {% if not cost_id == '0' %}
+                                <tr>
+                                    <td>Kundennummer:</td>
+                                    <td>{{ cost_id }}</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                 <div id="project">
+                     <div>
+                         {{ receiver }}
+                     </div>
+                     <div>
+                         {{ address }}
+                     </div>
+                     <div>
+                         {{ city }}
+                     </div>
+                 </div>
+
+
+            </header>
+            <h1>RECHNUNG</h1>
+
             <table>
-                <tbody>
-                    <tr>
-                        <td>Rechnungsnummer:</td>
-                        <td>{{ bill_no }}</td>
-                    </tr>
-                    <tr>
-                        <td>Rechnungsdatum:</td>
-                        <td>{{ date }}</td>
-                    </tr>
-                    {% if not cost_id == '0' %}
-                        <tr>
-                            <td>Kundennummer:</td>
-                            <td>{{ cost_id }}</td>
-                        </tr>
+                <THEAD>
+                    <TR>
+                        <TH class="qty">Menge</TH>
+                        <TH class="unit">Einheit</TH>
+                        <TH class="desc">Leistung</TH>
+                        <TH class="ppunit">á</TH>
+                        <TH class="total">Preis €</TH>
+                    </TR>
+                </THEAD>
+                <TBODY>
+                {% if not p['first-page'] %}
+                    <TR>
+                        <TD colspan="4" class="carry-top-text">Übertrag</TD>
+                        <TD class="carry-top">{{ '%0.2f' % p['sum-before']|float }}</TD>
+                    </TR>
+                {% endif %}
+
+                {% for item in p['items'] %}
+                    {% if item['name'] is defined %}
+                        <TR>
+                            <TD colspan="5" class="service">{{ item['name'] }}</TD>
+                        </TR>
+                    {% else %}
+                        <TR>
+                            <TD class="qty">{{item.amount}}</TD>
+                            <TD class="unit">{{item.unit}}</TD>
+                            <TD class="desc">{{item.text}}</TD>
+                            <TD class="ppunit">{{ '%0.2f' % item.price_per_unit|float }}</TD>
+                            <TD class="total">{{ '%0.2f' % item.price|float }}</TD>
+                        </TR>
                     {% endif %}
-                </tbody>
+                {% endfor %}
+
+                {% if p['last-page'] %}
+                    <TR>
+                        <TD colspan="4" class="netto total_text"></TD>
+                        <TD class="netto total">{{ '%0.2f' % netto|float }}</TD>
+                    </TR>
+
+
+                    {% if discount is defined %}
+                    <TR>
+                        <TD colspan="4" class="rabatt_text total_text">- Rabatt: </TD>
+                        <TD class="rabatt total">{{ '%0.2f' % discount|float }}</TD>
+                    </TR>
+                    <TR>
+                        <TD colspan="4" class="zs_text total_text"></TD>
+                        <TD class="zs total">{{ '%0.2f' % zs|float }}</TD>
+                    </TR>
+                    {% endif %}
+
+
+                    <TR>
+                        <TD colspan="4" class="mwst total_text">20% MwSt:</TD>
+                        <TD class="mwst total">{{ '%0.2f' % mwst|float }}</TD>
+                    </TR>
+                    <TR>
+                        <TD colspan="4" class="grand total total_text">Summe EURO:</TD>
+                        <TD class="grand total">{{ '%0.2f' % brutto|float }}</TD>
+                    </TR>
+
+                {% else %}
+                    <TR>
+                        <TD colspan="4" class="carry-bottom-text">Übertrag:</TD>
+                        <TD class="carry-bottom total">{{ '%0.2f' % p['sum']|float }}</TD>
+                    </TR>
+                {% endif %}
+                </TBODY>
             </table>
-            <!--<div>-->
-                <!--Rechnungsnummer: {{ bill_no }}-->
-            <!--</div>-->
-            <!--<div>-->
-                <!--Rechnungsdatum: {{ date }}-->
-            <!--</div>-->
+
+            {% if p['last-page'] %}
+
+                <div id="notices">
+                    <div class="notice">
+                        Zahlbar innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug.
+                    </div>
+                </div>
+
+            {% endif %}
         </div>
-         <div id="project">
-             <div>
-                 {{ receiver }}
-             </div>
-             <div>
-                 {{ address }}
-             </div>
-             <div>
-                 {{ city }}
-             </div>
-         </div>
-
-
-    </header>
-<h1>RECHNUNG</h1>
-
-    <table>
-        <THEAD>
-            <TR>
-                <TH class="qty">Menge</TH>
-                <TH class="unit">Einheit</TH>
-                <TH class="desc">Leistung</TH>
-                <TH class="ppunit">á</TH>
-                <TH class="total">Preis €</TH>
-            </TR>
-        </THEAD>
-        <TBODY>
-    {% for commissions in items %}
-            <TR>
-                <TD colspan="5" class="service">{{ commissions.name }}</TD>
-            </TR>
-        {% for item in commissions['items'] %}
-            <TR>
-                <TD class="qty">{{item.amount}}</TD>
-                <TD class="unit">{{item.unit}}</TD>
-                <TD class="desc">{{item.text}}</TD>
-                <TD class="ppunit">{{ '%0.2f' % item.price_per_unit|float }}</TD>
-                <TD class="total">{{ '%0.2f' % item.price|float }}</TD>
-            </TR>
-        {% endfor %}
     {% endfor %}
-        <TR>
-            <TD colspan="4" class="netto total_text"></TD>
-            <TD class="netto total">{{ '%0.2f' % netto|float }}</TD>
-        </TR>
-
-        {% if discount is defined %}
-        <TR>
-            <TD colspan="4" class="rabatt_text total_text">- Rabatt: </TD>
-            <TD class="rabatt total">{{ '%0.2f' % discount|float }}</TD>
-        </TR>
-        <TR>
-            <TD colspan="4" class="zs_text total_text"></TD>
-            <TD class="zs total">{{ '%0.2f' % zs|float }}</TD>
-        </TR>
-        {% endif %}
-        <TR>
-            <TD colspan="4" class="mwst total_text">20% MwSt:</TD>
-            <TD class="mwst total">{{ '%0.2f' % mwst|float }}</TD>
-        </TR>
-        <TR>
-            <TD colspan="4" class="grand total total_text">Summe EURO:</TD>
-            <TD class="grand total">{{ '%0.2f' % brutto|float }}</TD>
-        </TR>
-        </TBODY>
-    </table>
-
-    <div id="notices">
-        <div class="notice">
-            Zahlbar innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug.
-        </div>
-    </div>
-
-
 
 </body>
 </html>
