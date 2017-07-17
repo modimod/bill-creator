@@ -9,15 +9,6 @@ TR231
 #Kommission Bauer
 5,st,Hose verkürzt,1,5
 6.73,lfm,ziehen,2,10
-#Kommission 3
-7,lfm,Karniesen,10,50
-9,lfm,Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
-7,lfm,Store nähen,10,50
-9,lfm,ziehen,2,10
 #Kommission 4
 7,lfm,Karniesen,10,50
 9,lfm,Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig,2,10
@@ -27,4 +18,23 @@ TR231
 9,lfm,ziehen,2,10
 7,lfm,Store nähen,10,50
 9,lfm,ziehen,2,10
-15.3
+#Kommission 3
+7,lfm,Karniesen,10,50
+9,lfm,Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig Stor Unland Patrick ist lustig,2,10
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+9,lfm,ziehen,2,10
+7,lfm,Store nähen,10,50
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+7,lfm,Store nähen,10,50
+9,lfm,ziehen,2,10
+-15.3
