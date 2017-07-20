@@ -3,19 +3,35 @@ import jinja2
 import codecs
 
 INDICES = {
-	'date': 0,
-	'receiver': 1,
-	'address': 2,
-	'city': 3,
-	'cost_id': 4,
-	'bill_no': 5,
-	'start_items': 6
+	'bill-offer': 0,
+	'date': 1,
+	'receiver': 2,
+	'address': 3,
+	'city': 4,
+	'cost_id': 5,
+	'bill_no': 6,
+	'start_items': 7
 }
 
 heads = list(['amount','unit','text','price_per_unit','price'])
 
 MAX_LINES = 20 #max lines per page
 
+
+HTML_TEMP_DIR = '/tmp'
+CSS_DIR = '/Users/Moerti/AA_projects/bill-creator/style/style.css'
+
+
+import tkinter as tk
+from tkinter import filedialog
+
+root = tk.Tk()
+root.withdraw()
+SRC_FILE = filedialog.askopenfilename()
+if SRC_FILE == '':
+	print('Bitte Datei auswählen')
+	exit(-1)
+print(SRC_FILE)
 
 def render(tpl_path, context):
 	path, filename = os.path.split(tpl_path)
@@ -29,6 +45,17 @@ def read_source(src):
 					data = list(file)
 
 	context = {}
+
+	bill_offer = data[INDICES['bill-offer']]
+
+	if bill_offer.strip().upper() == 'R':
+		context['bill_offer'] = 'RECHNUNG'
+		context['notices'] = 'Zahlbar innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug.'
+	else:
+		context['bill_offer'] = 'ANGEBOT'
+		context['notices'] = 'Wir freuen uns sehr, wenn unser Angebot Ihre Zustimmung findet.'
+
+	context['bill-offer'] = data[INDICES['bill-offer']]
 	context['date'] = data[INDICES['date']]
 	context['receiver'] = data[INDICES['receiver']]
 	context['address'] = data[INDICES['address']]
@@ -141,23 +168,24 @@ def get_total_price(context):
 	return ('netto',netto),('mwst',mwst),('brutto',brutto)
 
 
-# price_info = get_total_price(context)
-#
-# for k,v in price_info:
-# 	context[k] = v
-#
-# result = render('template.html', context)
+context, lines = read_source(SRC_FILE)
+context['css'] = CSS_DIR
 
-scontext,lines = read_source('source.txt')
-print(scontext)
-price_info = get_total_price(scontext)
+price_info = get_total_price(context)
 for k,v in price_info:
-	scontext[k] = v
+	context[k] = v
 
-result = render('template.html', scontext)
+result = render('template.html', context)
 
-with open("bill.html", "w") as f:
+HTML_FILE = os.path.join(HTML_TEMP_DIR,'bill.html')
+
+with open(HTML_FILE, "w") as f:
 	f.write(result)
+
+DEST_FILE = SRC_FILE
+DEST_FILE = SRC_FILE[:-3]+'pdf'
+
+print(DEST_FILE)
 
 import pdfkit
 options = {
@@ -166,7 +194,7 @@ options = {
 	'dpi': 400,
 	'header-right':'[page]/[toPage]'
 }
-pdfkit.from_url('file:///Users/Moerti/AA_projects/bill-creator/bill.html', 'out.pdf', options=options)
+pdfkit.from_file(HTML_FILE, DEST_FILE, options=options)
 
 
 ### so soll context aussehen
@@ -239,5 +267,7 @@ pdfkit.from_url('file:///Users/Moerti/AA_projects/bill-creator/bill.html', 'out.
 # 	'address': 'Gartenstrasse 12',
 # 	'city': 'Tragwein',
 # 	'bill_no': 'TR231',
-# 	'discount': -10.15
+# 	'discount': -10.15,
+#	'bill_offer': 'R'
+#	'notices': 'Zahlbar innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug.
 # }
