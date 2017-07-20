@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Rechnung</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="{{ css }}">
 </head>
 <body>
     {% for p in pages %}
@@ -52,7 +52,7 @@
 
 
             </header>
-            <h1>RECHNUNG</h1>
+            <h1>{{ bill_offer }}</h1>
 
             <table>
                 <THEAD>
@@ -129,7 +129,7 @@
 
                 <div id="notices">
                     <div class="notice">
-                        Zahlbar innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug.
+                        {{ notices }}
                     </div>
                 </div>
 
