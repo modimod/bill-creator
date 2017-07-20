@@ -1,0 +1,12 @@
+erste Zeile R -> Rechnung oder A -> Angebot
+
+
+
+
+Kundennummer: wenn 0 dann nicht angezeigt
+Rabatt: LETZTE ZEILE, wenn 0 dann nicht angezeigt
+
+
+Einschränkungen:
+pro Kommission nicht mehr als MAX_LINES (default 20) sonst entsteht eine leere Seite!
+

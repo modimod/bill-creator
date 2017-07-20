@@ -60,9 +60,8 @@ def read_source(src):
 	context['receiver'] = data[INDICES['receiver']]
 	context['address'] = data[INDICES['address']]
 	context['city'] = data[INDICES['city']]
-	context['cost_id'] = data[INDICES['cost_id']]
+	context['cost_id'] = data[INDICES['cost_id']].strip()
 	context['bill_no'] = data[INDICES['bill_no']]
-
 
 	start = INDICES['start_items']
 
