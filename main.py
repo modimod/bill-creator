@@ -13,7 +13,7 @@ INDICES = {
 	'start_items': 7
 }
 
-heads = list(['amount','unit','text','price_per_unit','price'])
+heads = list(['amount','unit','text','price_per_unit'])
 
 MAX_LINES = 20 #max lines per page
 
@@ -119,7 +119,9 @@ def read_source(src):
 			if d.startswith('#'):
 				items.append({'name': d[1:].rstrip()})
 			else:
-				items.append({ h: v.rstrip() for (h,v) in zip(heads,d.split(',')) })
+				temp_dict = { h: v.rstrip() for (h,v) in zip(heads,d.split(',')) }
+				temp_dict['price'] = float(temp_dict['amount']) * float(temp_dict['price_per_unit'])
+				items.append(temp_dict)
 				page_sum += float(d.split(',')[-1])
 		page['items'] = items
 		page['sum'] = page_sum
