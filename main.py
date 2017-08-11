@@ -193,6 +193,7 @@ options = {
     'page-size': 'A4',
     'encoding': "UTF-8",
 	'dpi': 400,
+	'header-left':'Textil-Dekor Sacher OGH',
 	'header-right':'[page]/[toPage]'
 }
 pdfkit.from_file(HTML_FILE, DEST_FILE, options=options)
