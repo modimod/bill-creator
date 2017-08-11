@@ -97,7 +97,6 @@ def read_source(src):
 					ids.append(i)
 
 			i += 1
-			print('i:',i)
 	else:
 		for i,d in enumerate(data[start:]):
 			if i//MAX_LINES >= len(page_ids):
@@ -121,12 +120,13 @@ def read_source(src):
 				temp_dict = { h: v.rstrip() for (h,v) in zip(heads,d.split(',')) }
 				temp_dict['price'] = float(temp_dict['amount']) * float(temp_dict['price_per_unit'])
 				items.append(temp_dict)
-				page_sum += float(d.split(',')[-1])
+				page_sum += temp_dict['price']
 		page['items'] = items
 		page['sum'] = page_sum
 
 		page['first-page'] = True if i==0 else False
 		page['last-page'] = True if i==len(page_ids)-1 else False
+		print('page_sum_before',page_sum_before)
 		page['sum-before'] = page_sum_before
 		page_sum_before = page_sum
 
